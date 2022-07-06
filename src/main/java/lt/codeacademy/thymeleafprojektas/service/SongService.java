@@ -39,8 +39,8 @@ public class SongService {
         songRepository.save(song);
     }
 
-    public List<Song> getAllSongs() {
-        return songRepository.findAll();
+    public List<SongDtoGet> getAllSongsDto() {
+        return songRepository.findAll().stream().map(songToSongDtoGetMapper::map).collect(Collectors.toList());
     }
 
     public Page<SongDtoGet> getSongsPageable(Pageable pageable) {
@@ -66,7 +66,7 @@ public class SongService {
         song = song.toBuilder()
                 .songName(songUpdate.getSongName())
                 .playtime(songUpdate.getPlaytime())
-                .albums(songUpdate.getAlbums())
+//                .albums(songUpdate.getAlbums())
                 .authors(songUpdate.getAuthors()).build();
 
         songRepository.save(song);

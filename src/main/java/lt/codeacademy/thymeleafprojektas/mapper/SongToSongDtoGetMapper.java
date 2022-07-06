@@ -16,8 +16,8 @@ public class SongToSongDtoGetMapper {
                 .id(song.getId())
                 .songName(song.getSongName())
                 .playtime(song.getPlaytime())
-                .albumList(song.getAlbums())
-                .authorList(song.getAuthors())
+//                .albumList(song.getAlbums())
+//                .authorList(song.getAuthors())
                 .albumString(albumString)
                 .authorString(authorString)
                 .build();

@@ -22,7 +22,7 @@ public class SongDtoGet {
 
     private String albumString;
 
-    private Set<Album> albumList;
-
-    private List<Author> authorList;
+//    private Set<Album> albumList;
+//
+//    private List<Author> authorList;
 }
