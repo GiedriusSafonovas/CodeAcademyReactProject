@@ -1,5 +1,5 @@
 const SongsPage = () => {
-    return(
+    return (
         <h1>this is Song Page</h1>
     )
 }
