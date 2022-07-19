@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     return(
@@ -17,8 +18,8 @@ const Header = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Add Song</Nav.Link>
-                        <Nav.Link href="#action2">Songs</Nav.Link>
+                        <Nav.Link href="/addsong">Add Song</Nav.Link>
+                        <Nav.Link to="/songlist" as={NavLink}>Songs</Nav.Link>
                         <NavDropdown title="Language" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">
