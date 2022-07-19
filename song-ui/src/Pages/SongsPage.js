@@ -1,6 +1,14 @@
 import {Table} from "react-bootstrap";
+import {useEffect} from "react";
+import {getSongs} from "../API/apiEndpoints";
 
 const SongsPage = () => {
+
+    useEffect(() =>{
+        getSongs().then((response)=>console.log('response', response))
+            .catch((error)=>console.log('error', error))
+        })
+
     return (
         <Table striped bordered hover variant="dark">
             <thead>
@@ -31,6 +39,7 @@ const SongsPage = () => {
             </tr>
             </tbody>
         </Table>
+
     )
 }
 export default SongsPage
