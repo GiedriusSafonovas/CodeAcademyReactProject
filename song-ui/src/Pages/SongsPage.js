@@ -15,8 +15,6 @@ const SongsPage = () => {
             .catch((error) => console.log('error', error))
     }, [])
 
-    console.log('songs', songs)
-
     return (
             <Table striped bordered hover variant="dark">
                 <thead>

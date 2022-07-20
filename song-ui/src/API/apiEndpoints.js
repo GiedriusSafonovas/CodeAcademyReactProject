@@ -2,4 +2,6 @@ import HTTP from './AxiosConfig';
 
 const getSongs = () => HTTP.get("/songs")
 
-export {getSongs}
+const createSong = (songData) => HTTP.post("/createsong", songData)
+
+export {getSongs, createSong}
