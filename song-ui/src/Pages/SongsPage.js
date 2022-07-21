@@ -19,7 +19,11 @@ const SongsPage = () => {
     const deleteSongById = (id) =>
     {
         console.log(id)
-        deleteSong(id)
+
+        deleteSong(id).then(()=>{
+            const newSongList = songs.filter(song => song.id !== id)
+            setSongs(newSongList)
+        })
     }
 
     return (
