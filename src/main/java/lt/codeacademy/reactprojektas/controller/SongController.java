@@ -2,11 +2,17 @@ package lt.codeacademy.reactprojektas.controller;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.reactprojektas.dto.SongDtoGet;
+import lt.codeacademy.reactprojektas.dto.SongDtoPost;
 import lt.codeacademy.reactprojektas.service.PlaylistService;
 import lt.codeacademy.reactprojektas.service.SongService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,6 +28,12 @@ public class SongController {
         List<SongDtoGet> list = songService.getAllSongsDto();
         System.out.println("DONE");
         return list;
+    }
+
+    @PostMapping("/createsong")
+    public ResponseEntity<Void> createSong(@Valid @RequestBody SongDtoPost songDtoPost){
+        songService.addSong(songDtoPost);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 //    @GetMapping("/addsong")
