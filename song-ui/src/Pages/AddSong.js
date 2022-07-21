@@ -6,9 +6,9 @@ import {createSong} from "../API/apiEndpoints";
 const AddSong = () =>
 {
     const [song, setSong] = useState({
-        name: '',
-        album: '',
-        author: '',
+        songName: '',
+        albumString: '',
+        authorString: '',
         playtime: '',
     })
 
@@ -22,7 +22,7 @@ const AddSong = () =>
     const onSubmit = (e) =>{
         e.preventDefault()
         console.log(song)
-        createSong(song).then()
+        createSong(song)
     }
 
 
@@ -32,7 +32,7 @@ const AddSong = () =>
                 <Form.Label>Song name</Form.Label>
                 <Form.Control type="text"
                               placeholder="Enter song name"
-                              name = 'name'
+                              name = 'songName'
                               onChange={handleChange}
                 />
             </Form.Group>
@@ -40,7 +40,7 @@ const AddSong = () =>
                 <Form.Label>Album</Form.Label>
                 <Form.Control type="text"
                               placeholder="Enter album"
-                              name = 'album'
+                              name = 'albumString'
                               onChange={handleChange}
                 />
                 <Form.Text className="text-muted">
@@ -51,7 +51,7 @@ const AddSong = () =>
                 <Form.Label>Author</Form.Label>
                 <Form.Control type="text"
                               placeholder="Enter author"
-                              name = 'author'
+                              name = 'authorString'
                               onChange={handleChange}
                 />
                 <Form.Text className="text-muted">
