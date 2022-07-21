@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SongService {
     private final SongRepository songRepository;
-    private final AuthorRepository authorRepository;
-    private final AlbumRepository albumRepository;
+    private final AuthorService authorService;
+    private final AlbumService albumService;
     private final SongToSongDtoGetMapper songToSongDtoGetMapper;
     private final SongDtoPostToSongMapper songDtoPostToSongMapper;
 
@@ -31,9 +31,31 @@ public class SongService {
 
         Song song = songDtoPostToSongMapper.map(songDtoPost);
 
-        System.out.println(song);
+//        song.getAlbums().stream().map(album -> albumService.getAlbumByName(album.getName()).isEmpty(albumService.addAlbum(album)));
+
+        addNewAlbums(song);
+        addNewAuthors(song);
+
+        System.out.println("song object: " + song);
+
 
         songRepository.save(song);
+    }
+
+    private void addNewAlbums(Song song){
+        song.getAlbums().forEach(album -> {
+            if(albumService.getAlbumByName(album.getName()).isEmpty()){
+                albumService.addAlbum(album);
+            }
+        });
+    }
+
+    private void addNewAuthors(Song song) {
+        song.getAuthors().forEach(author -> {
+            if(authorService.getAuthorByName(author.getName()).isEmpty()){
+                authorService.addAuthor(author);
+            }
+        });
     }
 
     public List<SongDtoGet> getAllSongsDto() {

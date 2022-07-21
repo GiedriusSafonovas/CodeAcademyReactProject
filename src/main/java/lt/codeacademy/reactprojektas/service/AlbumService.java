@@ -17,4 +17,8 @@ public class AlbumService {
         return albumRepository.findAlbumByName(albumName);
     }
 
+    public void addAlbum(Album album){
+        albumRepository.save(album);
+    }
+
 }

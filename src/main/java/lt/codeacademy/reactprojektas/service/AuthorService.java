@@ -20,4 +20,8 @@ public class AuthorService {
     public Author getAuthorById(Long id){
         return authorRepository.findById(id).orElseThrow();
     }
+
+    public void addAuthor(Author author) {
+        authorRepository.save(author);
+    }
 }
