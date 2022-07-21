@@ -7,7 +7,9 @@ import lt.codeacademy.reactprojektas.service.PlaylistService;
 import lt.codeacademy.reactprojektas.service.SongService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +26,7 @@ public class SongController {
 
     @GetMapping("/songs")
     public List<SongDtoGet> getSongList() {
-        System.out.println("HELLO");
         List<SongDtoGet> list = songService.getAllSongsDto();
-        System.out.println("DONE");
         return list;
     }
 
@@ -34,6 +34,11 @@ public class SongController {
     public ResponseEntity<Void> createSong(@Valid @RequestBody SongDtoPost songDtoPost){
         songService.addSong(songDtoPost);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/deletesong/{id}")
+    public void deleteSong(@PathVariable Long id){
+        songService.deleteSongById(id);
     }
 
 //    @GetMapping("/addsong")
