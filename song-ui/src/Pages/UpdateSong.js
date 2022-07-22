@@ -30,8 +30,7 @@ const AddSong = () =>
     const onSubmit = (e) =>{
         e.preventDefault()
         console.log(song)
-        updateSong(song)
-        navigate("/songlist")
+        updateSong(song).finally(() => navigate("/songlist"))
     }
 
 
