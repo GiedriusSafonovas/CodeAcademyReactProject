@@ -1,4 +1,5 @@
 const defaultState = {
+    id: -1,
     songName: '',
     albumString: '',
     authorString: '',
@@ -11,6 +12,7 @@ const songReducer = (state = defaultState, action) => {
             const songEdit = action.song
             console.log('In redux: ',songEdit)
             return {
+                id: songEdit.id,
                 songName: songEdit.songName,
                 albumString: songEdit.albumString,
                 authorString: songEdit.authorString,
