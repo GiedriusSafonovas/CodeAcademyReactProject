@@ -3,11 +3,12 @@ import Button from "react-bootstrap/Button";
 import {useState} from "react";
 import {updateSong} from "../API/apiEndpoints";
 import {useSelector} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const AddSong = () =>
 {
 
+    const navigate = useNavigate()
 
     const songData = useSelector(state => state.song)
 
@@ -30,6 +31,7 @@ const AddSong = () =>
         e.preventDefault()
         console.log(song)
         updateSong(song)
+        navigate("/songlist")
     }
 
 
@@ -73,7 +75,7 @@ const AddSong = () =>
                               onChange={handleChange}
                 />
             </Form.Group>
-            <Button variant="primary" type="submit" to="/songlist" as={NavLink}>
+            <Button variant="primary" type="submit">
                 Submit
             </Button>
         </Form>

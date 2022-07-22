@@ -2,13 +2,15 @@ import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {getSongs, deleteSong} from "../API/apiEndpoints";
 import Button from "react-bootstrap/Button";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {updateSong} from "../Redux/Actions";
 
 const SongsPage = () => {
 
     const [songs, setSongs] = useState([])
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getSongs().then((response) => {
@@ -34,6 +36,7 @@ const SongsPage = () => {
     const editSong = (song) =>{
         console.log('hello ',song)
         dispatch(updateSong(song))
+        navigate("/updatesong")
     }
 
     return (
@@ -59,7 +62,7 @@ const SongsPage = () => {
                         <td>{song.authorString}</td>
                         <td>{song.playtime}</td>
                         <td></td>
-                        <td><Button variant="warning" to="/updatesong" as={NavLink} onClick={() => editSong(song)}>Edit</Button></td>
+                        <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
                         <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button></td>
                     </tr>
                 ))}
