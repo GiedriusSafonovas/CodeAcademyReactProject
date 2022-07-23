@@ -1,5 +1,9 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {login} from "../API/apiEndpoints";
+import {useNavigate} from "react-router-dom";
 const Login = () => {
+
+    const navigate = useNavigate()
 
     const validate = (user) => {
         const errors = {}
@@ -21,6 +25,12 @@ const Login = () => {
         }}
                 onSubmit={(user, helper) => {
                     console.log(user)
+                    login({
+                        username: user.username,
+                        password: user.password
+                    }).then((response)=>{
+                        console.log(response)
+                        navigate("/songlist")})
                 }}
                 validate={validate}>
             {props => {

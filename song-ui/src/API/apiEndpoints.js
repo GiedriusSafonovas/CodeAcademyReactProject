@@ -8,4 +8,6 @@ const deleteSong = (id) => HTTP.delete("/deletesong/"+id)
 
 const updateSong = (songData) => HTTP.put("/updatesong", songData)
 
-export {getSongs, createSong, deleteSong, updateSong}
+const login = (loginData) => HTTP.post("/login", loginData)
+
+export {getSongs, createSong, deleteSong, updateSong, login}
