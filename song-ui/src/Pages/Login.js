@@ -1,6 +1,9 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {login} from "../API/apiEndpoints";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setUserData} from "../Redux/Actions";
+import {saveToLocalStorage} from "../Storage/localStorage";
 const Login = () => {
 
     const navigate = useNavigate()
@@ -18,6 +21,8 @@ const Login = () => {
         return errors
     }
 
+    const dispatch = useDispatch()
+
     return (
         <Formik initialValues={{
             username: '',
@@ -30,6 +35,8 @@ const Login = () => {
                         password: user.password
                     }).then((response)=>{
                         console.log(response)
+                        saveToLocalStorage('user', response.data)
+                        dispatch(setUserData(response.data))
                         navigate("/songlist")})
                 }}
                 validate={validate}>
