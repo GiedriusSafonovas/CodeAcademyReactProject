@@ -5,6 +5,7 @@ import AddSong from "./Pages/AddSong";
 import UpdateSong from "./Pages/UpdateSong";
 import {Provider} from "react-redux";
 import store from "./Redux/store";
+import Login from "./Pages/Login";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route path='/songlist' element={<SongsPage/>}/>
                         <Route path='/addsong' element={<AddSong/>}/>
                         <Route path='/updatesong' element={<UpdateSong/>}/>
+                        <Route path='/login' element={<Login/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>

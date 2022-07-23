@@ -40,6 +40,7 @@ const Header = () => {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
+                    <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
