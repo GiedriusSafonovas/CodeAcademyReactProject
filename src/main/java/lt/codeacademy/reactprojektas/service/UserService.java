@@ -27,7 +27,7 @@ public class UserService implements UserDetailsService {
     private final PlaylistRepository playlistRepository;
 
 
-    public void registerNewUser(UserDto userDto){
+    public void registerNewUser(UserDto userDto) {
 
         Set<Authority> authorities = authorityRepository.findAll().stream().filter(auth -> auth.getName().equals("USER")).collect(Collectors.toUnmodifiableSet());
 
@@ -37,29 +37,30 @@ public class UserService implements UserDetailsService {
 
         Playlist playlist = createNewLikedSongPlaylist();
 
-        if(userRepository.findUsersByUsernameWithAuthorities(userDto.getUserName()).isPresent()){
+        if (userRepository.findUsersByUsernameWithAuthorities(userDto.getUserName()).isPresent()) {
             throw new RuntimeException();
         }
-
-        userRepository.save(User.builder()
+        User newUser = User.builder()
                 .Username(userDto.getUserName())
                 .Password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userDto.getPassword()))
-                        .authorities(authorities)
-                        .playlists(Set.of(playlist))
-                .build());
+                .authorities(authorities)
+                .playlists(Set.of(playlist))
+                .build();
+
+        userRepository.save(newUser);
     }
 
-    private Playlist createNewLikedSongPlaylist(){
+    private Playlist createNewLikedSongPlaylist() {
         Playlist playlist = Playlist.builder().name("Liked Songs").build();
         playlistRepository.save(playlist);
         return playlist;
     }
 
-    public User getUserByName(String userName){
+    public User getUserByName(String userName) {
         return userRepository.findById(userName).orElseThrow();
     }
 
-    public Optional<User> getUserByNameOptional(String userName){
+    public Optional<User> getUserByNameOptional(String userName) {
         return userRepository.findById(userName);
     }
 
