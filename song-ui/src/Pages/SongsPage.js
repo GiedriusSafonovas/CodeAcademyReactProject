@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {updateSong} from "../Redux/Actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {brands, regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const SongsPage = () => {
 
@@ -61,7 +63,10 @@ const SongsPage = () => {
                         <td>{song.albumString}</td>
                         <td>{song.authorString}</td>
                         <td>{song.playtime}</td>
-                        <td></td>
+                        <td>
+                            <FontAwesomeIcon icon={regular('heart')} />
+                            {/*<FontAwesomeIcon icon={solid('heart')} />*/}
+                        </td>
                         <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
                         <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button></td>
                     </tr>
