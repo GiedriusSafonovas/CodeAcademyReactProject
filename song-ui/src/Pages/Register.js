@@ -1,8 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setUserData} from "../Redux/Actions";
-import {saveToLocalStorage} from "../Storage/localStorage";
+import {registerNewUser} from "../API/apiEndpoints";
+
 const Login = () => {
 
     const navigate = useNavigate()
@@ -24,8 +23,6 @@ const Login = () => {
         return errors
     }
 
-    const dispatch = useDispatch()
-
     return (
         <Formik initialValues={{
             username: '',
@@ -34,7 +31,12 @@ const Login = () => {
         }}
                 onSubmit={(user, helper) => {
                     console.log(user)
-
+                    registerNewUser({
+                        userName: user.username,
+                        password: user.password,
+                    }).then((response)=>{
+                        console.log(response)
+                        navigate("/songlist")})
                 }}
                 validate={validate}>
             {props => {

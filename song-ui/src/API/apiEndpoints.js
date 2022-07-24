@@ -10,4 +10,6 @@ const updateSong = (songData) => HTTP.put("/updatesong", songData)
 
 const login = (loginData) => HTTP.post("/login", loginData)
 
-export {getSongs, createSong, deleteSong, updateSong, login}
+const registerNewUser = (userData) => HTTP.post("/register", userData)
+
+export {getSongs, createSong, deleteSong, updateSong, login, registerNewUser}
