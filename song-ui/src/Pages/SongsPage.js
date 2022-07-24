@@ -1,14 +1,16 @@
 import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {getSongs, deleteSong} from "../API/apiEndpoints";
+import {getSongs, deleteSong, likeSong} from "../API/apiEndpoints";
 import Button from "react-bootstrap/Button";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {updateSong} from "../Redux/Actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {brands, regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const SongsPage = () => {
+
+    const user = useSelector(state => state.user)
 
     const [songs, setSongs] = useState([])
 
@@ -41,6 +43,15 @@ const SongsPage = () => {
         navigate("/updatesong")
     }
 
+    const likeSongHandler = (songId) => {
+        const data = {
+            username: user.username,
+            songId: songId
+        }
+
+        likeSong(data)
+    }
+
     return (
             <Table striped bordered hover variant="dark">
                 <thead>
@@ -64,7 +75,9 @@ const SongsPage = () => {
                         <td>{song.authorString}</td>
                         <td>{song.playtime}</td>
                         <td>
-                            <FontAwesomeIcon icon={regular('heart')} />
+                            <Button onClick={()=>likeSongHandler(song.id)}>
+                                <FontAwesomeIcon icon={regular('heart')} />
+                            </Button>
                             {/*<FontAwesomeIcon icon={solid('heart')} />*/}
                         </td>
                         <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>

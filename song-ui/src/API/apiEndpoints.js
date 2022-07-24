@@ -12,4 +12,6 @@ const login = (loginData) => HTTP.post("/login", loginData)
 
 const registerNewUser = (userData) => HTTP.post("/register", userData)
 
-export {getSongs, createSong, deleteSong, updateSong, login, registerNewUser}
+const likeSong = (data) => HTTP.post("/likesong", data)
+
+export {getSongs, createSong, deleteSong, updateSong, login, registerNewUser, likeSong}
