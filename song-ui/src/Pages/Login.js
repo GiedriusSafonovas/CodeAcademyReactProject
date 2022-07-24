@@ -1,8 +1,8 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {login} from "../API/apiEndpoints";
+import {getLikedSongs, login} from "../API/apiEndpoints";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {setUserData} from "../Redux/Actions";
+import {setLikedSongs, setLikedSongsinReducer, setUserData} from "../Redux/Actions";
 import {saveToLocalStorage} from "../Storage/localStorage";
 const Login = () => {
 
@@ -37,7 +37,11 @@ const Login = () => {
                         console.log(response)
                         saveToLocalStorage('user', response.data)
                         dispatch(setUserData(response.data))
-                        navigate("/songlist")})
+                        getLikedSongs(response.data.username).then((response) => {
+                            dispatch(setLikedSongsinReducer(response.data))
+                            navigate("/songlist")
+                        })
+                        })
                 }}
                 validate={validate}>
             {props => {

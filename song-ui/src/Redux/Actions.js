@@ -11,3 +11,10 @@ export const setUserData = (user) => (
         user
     }
 )
+
+export const setLikedSongsinReducer = (likedSongs) => (
+    {
+        type: 'setLikedSongs',
+        likedSongs
+    }
+)
