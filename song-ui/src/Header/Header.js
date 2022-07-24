@@ -47,7 +47,11 @@ const Header = () => {
                     </Form>
                     {
                         !user.username ?
-                            <Nav.Link to="/login" as={NavLink}>Login</Nav.Link> :
+                            <>
+                                <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
+                                <Nav.Link to="/register" as={NavLink}>Register</Nav.Link>
+                            </>
+                            :
                             <Nav.Link onClick={() => logout('user')} href="/">Logout</Nav.Link>
                     }
                 </Navbar.Collapse>

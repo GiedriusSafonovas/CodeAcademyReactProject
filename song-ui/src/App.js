@@ -6,6 +6,7 @@ import UpdateSong from "./Pages/UpdateSong";
 import {Provider} from "react-redux";
 import store from "./Redux/store";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path='/addsong' element={<AddSong/>}/>
                         <Route path='/updatesong' element={<UpdateSong/>}/>
                         <Route path='/login' element={<Login/>}/>
+                        <Route path='/register' element={<Register/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
