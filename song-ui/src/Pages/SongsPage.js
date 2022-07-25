@@ -7,8 +7,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {setLikedSongsinReducer, updateSong} from "../Redux/Actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {useTranslation} from "react-i18next";
 
 const SongsPage = () => {
+
+    const { t } = useTranslation("songTable")
 
     const user = useSelector(state => state.user)
 
@@ -74,11 +77,11 @@ const SongsPage = () => {
             <thead>
             <tr>
                 <th>#</th>
-                <th>Song name</th>
-                <th>Album</th>
-                <th>Author</th>
-                <th>Playtime</th>
-                <th>Like</th>
+                <th>{t("songName")}</th>
+                <th>{t("album")}</th>
+                <th>{t("author")}</th>
+                <th>{t("playtime")}</th>
+                <th>{t("like")}</th>
                 <th></th>
                 <th></th>
             </tr>

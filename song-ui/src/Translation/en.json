@@ -1,0 +1,12 @@
+{
+  "common": {
+    "language": "EN"
+  },
+  "songTable": {
+    "songName": "Song Name",
+    "album": "Album",
+    "author": "Author",
+    "playtime": "Playtime",
+    "like": "Like"
+  }
+}

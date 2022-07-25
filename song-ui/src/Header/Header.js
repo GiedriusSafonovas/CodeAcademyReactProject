@@ -7,10 +7,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {logout} from "../utils/Logout";
+import {useTranslation} from "react-i18next";
 
 const Header = () => {
 
     const user = useSelector(state => state.user)
+
+    const {t, i18n} = useTranslation()
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -25,15 +28,9 @@ const Header = () => {
                     >
                         <Nav.Link to="/addsong" as={NavLink}>Add Song</Nav.Link>
                         <Nav.Link to="/songlist" as={NavLink}>Songs</Nav.Link>
-                        <NavDropdown title="Language" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider/>
-                            <NavDropdown.Item href="#action5">
-                                Something else here
-                            </NavDropdown.Item>
+                        <NavDropdown title={t("language")} id="navbarScrollingDropdown" onSelect={(eventKey) => i18n.changeLanguage(eventKey)}>
+                            <NavDropdown.Item eventKey="lt">LT</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="en">EN</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">

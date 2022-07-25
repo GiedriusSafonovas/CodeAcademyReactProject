@@ -1,0 +1,13 @@
+{
+  "common": {
+    "language": "LT"
+},
+
+  "songTable": {
+    "songName": "Dainos Pavadinimas",
+    "album": "Albumas",
+    "author": "Autorius",
+    "playtime": "Trukmė",
+    "like": "Patinka"
+  }
+}

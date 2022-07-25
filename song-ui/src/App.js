@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import store from "./Redux/store";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import "./Translation"
 
 function App() {
     return (
