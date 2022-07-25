@@ -27,7 +27,7 @@ const SongsPage = () => {
 
         console.log(likedSongsSelector.likedSongs)
 
-        if (user && likedSongsSelector.likedSongs === null) {
+        if (user.username && likedSongsSelector.likedSongs === null) {
             getLikedSongs(user.username).then((response) => {
                     dispatch(setLikedSongsinReducer(response.data))
                 }
@@ -106,6 +106,7 @@ const SongsPage = () => {
                         <td>{song.playtime}</td>
                         {user.username &&
                             <>
+                                {likedSongsSelector.likedSongs &&
                                 <td>
                                     {likedSongsSelector.likedSongs.find(likedSong => likedSong.id === song.id) ?
                                         <Button onClick={() => unLikeSongHandler(song)}>
@@ -115,7 +116,7 @@ const SongsPage = () => {
                                             <FontAwesomeIcon icon={regular('heart')}/>
                                         </Button>
                                     }
-                                </td>
+                                </td>}
                                 <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
                                 <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button>
                                 </td>
