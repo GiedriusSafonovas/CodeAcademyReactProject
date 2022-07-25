@@ -14,6 +14,8 @@ const registerNewUser = (userData) => HTTP.post("/register", userData)
 
 const likeSongapi = (data) => HTTP.post("/likesong", data)
 
+const unLikeSongapi = (data) => HTTP.post("/unlikesong", data)
+
 const getLikedSongs = (username) => HTTP.get("/getLikedSongs/"+username)
 
-export {getSongs, createSong, deleteSong, updateSong, login, registerNewUser, likeSongapi, getLikedSongs}
+export {getSongs, createSong, deleteSong, updateSong, login, registerNewUser, likeSongapi, getLikedSongs, unLikeSongapi}

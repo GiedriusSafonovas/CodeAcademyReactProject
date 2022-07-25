@@ -1,10 +1,10 @@
 import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {getSongs, deleteSong, getLikedSongs, likeSongapi} from "../API/apiEndpoints";
+import {getSongs, deleteSong, getLikedSongs, likeSongapi, unLikeSongapi} from "../API/apiEndpoints";
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {likeSong, setLikedSongsinReducer, updateSong} from "../Redux/Actions";
+import {likeSong, setLikedSongsinReducer, unLikeSong, updateSong} from "../Redux/Actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {useTranslation} from "react-i18next";
@@ -68,6 +68,16 @@ const SongsPage = () => {
         likeSongapi(data).then(()=>{dispatch(likeSong(song))})
     }
 
+    const unLikeSongHandler = (song) => {
+
+        const data = {
+            username: user.username,
+            songId: song.id
+        }
+
+        unLikeSongapi(data).then(()=>{dispatch(unLikeSong(song))})
+    }
+
     return (
         <Table striped bordered hover variant="dark">
             <thead>
@@ -98,7 +108,7 @@ const SongsPage = () => {
                             <>
                                 <td>
                                     {likedSongsSelector.likedSongs.find(likedSong => likedSong.id === song.id) ?
-                                        <Button>
+                                        <Button onClick={() => unLikeSongHandler(song)}>
                                             <FontAwesomeIcon icon={solid('heart')}/>
                                         </Button>
                                         : <Button onClick={() => likeSongHandler(song)}>

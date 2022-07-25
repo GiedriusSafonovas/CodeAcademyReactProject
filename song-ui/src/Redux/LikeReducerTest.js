@@ -16,6 +16,11 @@ const songReducer = (state = defaultState, action) => {
                 likedSongs: [...state.likedSongs, action.song]
             }
         }
+        case 'unLikeSong': {
+            return {
+                likedSongs: state.likedSongs.filter((song)=> song.id !== action.song.id)
+            }
+        }
         default:
             return state
     }

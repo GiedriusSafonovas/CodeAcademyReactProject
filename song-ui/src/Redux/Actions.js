@@ -25,3 +25,10 @@ export const likeSong = (song) => (
         song
     }
 )
+
+export const unLikeSong = (song) => (
+    {
+        type: 'unLikeSong',
+        song
+    }
+)
