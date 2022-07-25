@@ -23,10 +23,14 @@ public class PlaylistController {
 
     @PostMapping("/likesong")
     public void likeSong(@RequestBody PlaylistRequest playlistRequest) {
-
-        System.out.println(playlistRequest.getUsername());
         Long playlistId = playlistService.getLikedSongPlaylistId(playlistRequest.getUsername());
         playlistService.addSongToPlaylist(playlistRequest.getSongId(), playlistId);
+    }
+
+    @PostMapping("/unlikesong")
+    public void unLikeSong(@RequestBody PlaylistRequest playlistRequest) {
+        Long playlistId = playlistService.getLikedSongPlaylistId(playlistRequest.getUsername());
+        playlistService.removeSongFromPlaylist(playlistRequest.getSongId(), playlistId);
     }
 
     @GetMapping("/getLikedSongs/{username}")
