@@ -8,6 +8,7 @@ import UpdateSong from "./UpdateSong";
 import Login from "./Login";
 import Register from "./Register";
 import {useEffect} from "react";
+import HomePage from "./HomePage";
 
 const Pages = () => {
 
@@ -35,6 +36,7 @@ const Pages = () => {
             <Route path='/updatesong' element={<UpdateSong/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
+            <Route path='/' element={<HomePage/>}/>
         </Routes>
     )
 }

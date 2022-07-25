@@ -39,7 +39,7 @@ const Login = () => {
                         dispatch(setUserData(response.data))
                         getLikedSongs(response.data.username).then((response) => {
                             dispatch(setLikedSongsinReducer(response.data))
-                            navigate("/songlist")
+                            navigate("/")
                         })
                         })
                 }}
