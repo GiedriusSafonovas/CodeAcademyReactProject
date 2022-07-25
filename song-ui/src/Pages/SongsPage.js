@@ -11,29 +11,26 @@ import {useTranslation} from "react-i18next";
 
 const SongsPage = () => {
 
-    const { t } = useTranslation("songTable")
+    const {t} = useTranslation("songTable")
 
     const user = useSelector(state => state.user)
 
     const likedSongsSelector = useSelector(state => state.likes)
 
-    const [songs, setSongs] = useState([])
-
-    const [likedSongs, setLikedSongs] = useState([])
+    const [songs, setSongs] = useState(null)
 
     const navigate = useNavigate()
 
     useEffect(() => {
 
-        console.log(likedSongsSelector.likedSongs.isEmpty)
+        console.log(likedSongsSelector.likedSongs)
 
-        if(user && likedSongsSelector.likedSongs.length === 0){
+        if (user && likedSongsSelector.likedSongs === null) {
             getLikedSongs(user.username).then((response) => {
-                dispatch(setLikedSongsinReducer(response.data))
+                    dispatch(setLikedSongsinReducer(response.data))
                 }
             )
         }
-        setLikedSongs(likedSongsSelector.likedSongs)
         getSongs().then((response) => {
             console.log('response', response)
             setSongs(response.data)
@@ -81,11 +78,15 @@ const SongsPage = () => {
                 <th>{t("album")}</th>
                 <th>{t("author")}</th>
                 <th>{t("playtime")}</th>
-                <th>{t("like")}</th>
-                <th></th>
-                <th></th>
+                {user.username &&
+                    <>
+                        <th>{t("like")}</th>
+                        <th></th>
+                        <th></th>
+                    </>}
             </tr>
             </thead>
+            {songs !== null &&
                 <tbody>
                 {songs.map((song, i) => (
                     <tr key={song.id}>
@@ -94,21 +95,27 @@ const SongsPage = () => {
                         <td>{song.albumString}</td>
                         <td>{song.authorString}</td>
                         <td>{song.playtime}</td>
-                        <td>
-                            {likedSongs.find(likedSong => likedSong.id === song.id) ?
-                                <Button>
-                                    <FontAwesomeIcon icon={solid('heart')}/>
-                                </Button>
-                                : <Button onClick={() => likeSongHandler(song)}>
-                                    <FontAwesomeIcon icon={regular('heart')}/>
-                                </Button>
-                            }
-                        </td>
-                        <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
-                        <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button></td>
+                        {user.username &&
+                            <>
+                                <td>
+                                    {likedSongsSelector.likedSongs.find(likedSong => likedSong.id === song.id) ?
+                                        <Button>
+                                            <FontAwesomeIcon icon={solid('heart')}/>
+                                        </Button>
+                                        : <Button onClick={() => likeSongHandler(song)}>
+                                            <FontAwesomeIcon icon={regular('heart')}/>
+                                        </Button>
+                                    }
+                                </td>
+                                <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
+                                <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button>
+                                </td>
+                            </>
+                        }
                     </tr>
                 ))}
                 </tbody>
+            }
         </Table>
     )
 }
