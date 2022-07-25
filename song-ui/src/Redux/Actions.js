@@ -18,3 +18,10 @@ export const setLikedSongsinReducer = (likedSongs) => (
         likedSongs
     }
 )
+
+export const likeSong = (song) => (
+    {
+        type: 'likeSong',
+        song
+    }
+)
