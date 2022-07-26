@@ -59,7 +59,7 @@ public class SongService {
     }
 
     public List<SongDtoGet> getAllSongsDto() {
-        return songRepository.findAll().stream().map(songToSongDtoGetMapper::map).collect(Collectors.toList());
+        return songRepository.findByOrderBySongName().stream().map(songToSongDtoGetMapper::map).collect(Collectors.toList());
     }
 
     public Page<SongDtoGet> getSongsPageable(Pageable pageable) {

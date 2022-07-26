@@ -9,10 +9,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long> {
 
-    Page<Song> findSongBySongNameIsLikeIgnoreCase(String songName, Pageable pageable);
+    Page<Song> findSongBySongNameIgnoreCaseIsLikeOrderBySongName(String songName, Pageable pageable);
+
+    List<Song> findByOrderBySongName();
 
     @Query(value = "DELETE FROM song_albums WHERE songs_id = ?1",nativeQuery = true)
     @Modifying
