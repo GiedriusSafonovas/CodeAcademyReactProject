@@ -5,7 +5,9 @@
     "register": "Užsiregistruoti",
     "logout": "Atsijungti",
     "submit": "Vykdyti",
-    "or": "ARBA"
+    "or": "ARBA",
+    "success": "Sėkmė",
+    "error": "Klaida"
 },
 
   "songTable": {

@@ -5,7 +5,9 @@
     "register": "Register",
     "logout": "Logout",
     "submit": "Submit",
-    "or": "OR"
+    "or": "OR",
+    "success": "Success",
+    "error": "Error"
   },
   "songTable": {
     "songName": "Song Name",
