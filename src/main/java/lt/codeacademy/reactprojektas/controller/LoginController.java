@@ -10,12 +10,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -35,12 +38,18 @@ public class LoginController {
                 .map(principal -> ok(LoginResponseDto.of(
                         loginRequest.getUsername(),
                         jwtProvider.getToken(principal),
-                        jwtProvider.getExpiresInSeconds()
+                        getRoles(principal)
                 )))
                 .orElseThrow(() -> new BadCredentialsException("Authentication failed"));
     }
 
     private Authentication authenticate(String username, String password){
         return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    }
+
+    private Set<String> getRoles(User user){
+        return user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toSet());
     }
 }
