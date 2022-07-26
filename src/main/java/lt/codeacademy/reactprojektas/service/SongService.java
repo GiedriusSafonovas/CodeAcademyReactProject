@@ -82,10 +82,13 @@ public class SongService {
 
         Song song = songRepository.getById(id);
 
+        addNewAlbums(songUpdate);
+        addNewAuthors(songUpdate);
+
         song = song.toBuilder()
                 .songName(songUpdate.getSongName())
                 .playtime(songUpdate.getPlaytime())
-//                .albums(songUpdate.getAlbums())
+                .albums(songUpdate.getAlbums())
                 .authors(songUpdate.getAuthors()).build();
 
         songRepository.save(song);
