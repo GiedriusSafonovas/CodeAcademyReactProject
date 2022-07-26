@@ -43,7 +43,7 @@ public class SongController {
     }
 
     @PutMapping("/updatesong")
-    public void updateSong(@RequestBody SongDtoPost songDtoPost){
+    public void updateSong(@Valid @RequestBody SongDtoPost songDtoPost){
         songService.updateSong(songDtoPost, songDtoPost.getId());
     }
 
