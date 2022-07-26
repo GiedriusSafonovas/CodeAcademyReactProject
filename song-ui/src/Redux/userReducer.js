@@ -7,7 +7,7 @@ const defaultState = loadFromLocalStorage('user') ?
     : {
         username: '',
         jwtToken: '',
-        jwtTokenExpiresIn: 0
+        roles: []
     }
 
 const userReducer = (state = defaultState, action) => {

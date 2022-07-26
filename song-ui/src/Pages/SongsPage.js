@@ -58,7 +58,9 @@ const SongsPage = () => {
             songId: song.id
         }
 
-        likeSongapi(data).then(()=>{dispatch(likeSong(song))})
+        likeSongapi(data).then(() => {
+            dispatch(likeSong(song))
+        })
     }
 
     const unLikeSongHandler = (song) => {
@@ -68,7 +70,9 @@ const SongsPage = () => {
             songId: song.id
         }
 
-        unLikeSongapi(data).then(()=>{dispatch(unLikeSong(song))})
+        unLikeSongapi(data).then(() => {
+            dispatch(unLikeSong(song))
+        })
     }
 
     return (
@@ -81,8 +85,10 @@ const SongsPage = () => {
                 <th>{t("author")}</th>
                 <th>{t("playtime")}</th>
                 {user.username &&
+                    <th>{t("like")}</th>
+                }
+                {user.roles.includes("ROLE_ADMIN") &&
                     <>
-                        <th>{t("like")}</th>
                         <th></th>
                         <th></th>
                     </>}
@@ -97,19 +103,19 @@ const SongsPage = () => {
                         <td>{song.albumString}</td>
                         <td>{song.authorString}</td>
                         <td>{song.playtime}</td>
-                        {user.username &&
+                        {(user.username && likedSongsSelector.likedSongs) &&
+                            <td>
+                                {likedSongsSelector.likedSongs.find(likedSong => likedSong.id === song.id) ?
+                                    <Button onClick={() => unLikeSongHandler(song)}>
+                                        <FontAwesomeIcon icon={solid('heart')}/>
+                                    </Button>
+                                    : <Button onClick={() => likeSongHandler(song)}>
+                                        <FontAwesomeIcon icon={regular('heart')}/>
+                                    </Button>
+                                }
+                            </td>}
+                        {user.roles.includes("ROLE_ADMIN") &&
                             <>
-                                {likedSongsSelector.likedSongs &&
-                                <td>
-                                    {likedSongsSelector.likedSongs.find(likedSong => likedSong.id === song.id) ?
-                                        <Button onClick={() => unLikeSongHandler(song)}>
-                                            <FontAwesomeIcon icon={solid('heart')}/>
-                                        </Button>
-                                        : <Button onClick={() => likeSongHandler(song)}>
-                                            <FontAwesomeIcon icon={regular('heart')}/>
-                                        </Button>
-                                    }
-                                </td>}
                                 <td><Button variant="warning" onClick={() => editSong(song)}>Edit</Button></td>
                                 <td><Button variant="danger" onClick={() => deleteSongById(song.id)}>Delete</Button>
                                 </td>

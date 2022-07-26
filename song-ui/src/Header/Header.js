@@ -26,7 +26,8 @@ const Header = () => {
                         style={{maxHeight: '100px'}}
                         navbarScroll
                     >
-                        <Nav.Link to="/addsong" as={NavLink}>Add Song</Nav.Link>
+                        {user.roles.includes("ROLE_ADMIN") &&
+                        <Nav.Link to="/addsong" as={NavLink}>Add Song</Nav.Link>}
                         <Nav.Link to="/songlist" as={NavLink}>Songs</Nav.Link>
                         <NavDropdown title={t("language")} id="navbarScrollingDropdown" onSelect={(eventKey) => i18n.changeLanguage(eventKey)}>
                             <NavDropdown.Item eventKey="lt">LT</NavDropdown.Item>

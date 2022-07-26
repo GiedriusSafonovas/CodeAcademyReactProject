@@ -2,9 +2,12 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {useState} from "react";
 import {createSong} from "../API/apiEndpoints";
+import {useSelector} from "react-redux";
 
 const AddSong = () =>
 {
+    const user = useSelector(state => state.user)
+
     const [song, setSong] = useState({
         songName: '',
         albumString: '',
@@ -26,7 +29,8 @@ const AddSong = () =>
     }
 
 
-    return(
+    return(<>
+        {user.roles.includes("ROLE_ADMIN") &&
         <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Song name</Form.Label>
@@ -69,7 +73,8 @@ const AddSong = () =>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
-        </Form>
+        </Form>}
+        </>
     )
 }
 export default AddSong
