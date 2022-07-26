@@ -4,9 +4,12 @@ import {useState} from "react";
 import {updateSong} from "../API/apiEndpoints";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const AddSong = () =>
 {
+
+    const { t } = useTranslation("songTable")
 
     const navigate = useNavigate()
 
@@ -36,7 +39,7 @@ const AddSong = () =>
     return(
         <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Song name</Form.Label>
+                <Form.Label>{t("songName")}</Form.Label>
                 <Form.Control type="text"
                               defaultValue={song.songName}
                               name = 'songName'
@@ -44,7 +47,7 @@ const AddSong = () =>
                 />
             </Form.Group>
             <Form.Group className="mb-3" controlId="album">
-                <Form.Label>Album</Form.Label>
+                <Form.Label>{t("album")}</Form.Label>
                 <Form.Control type="text"
                               defaultValue={song.albumString}
                               name = 'albumString'
@@ -55,7 +58,7 @@ const AddSong = () =>
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="author">
-                <Form.Label>Author</Form.Label>
+                <Form.Label>{t("author")}</Form.Label>
                 <Form.Control type="text"
                               defaultValue={song.authorString}
                               name = 'authorString'
@@ -66,7 +69,7 @@ const AddSong = () =>
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="playtime">
-                <Form.Label>Playtime</Form.Label>
+                <Form.Label>{t("playtime")}</Form.Label>
                 <Form.Control type="text"
                               defaultValue={song.playtime}
                               name = 'playtime'
@@ -74,7 +77,7 @@ const AddSong = () =>
                 />
             </Form.Group>
             <Button variant="primary" type="submit">
-                Submit
+                {t("common:submit")}
             </Button>
         </Form>
     )

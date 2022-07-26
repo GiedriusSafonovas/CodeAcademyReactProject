@@ -1,8 +1,11 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
 import {registerNewUser} from "../API/apiEndpoints";
+import {useTranslation} from "react-i18next";
 
 const Login = () => {
+
+    const { t } = useTranslation("user")
 
     const navigate = useNavigate()
 
@@ -10,15 +13,15 @@ const Login = () => {
         const errors = {}
 
         if (user.username.length < 1) {
-            errors.username = "Can't be blank"
+            errors.username = t("errors:blank")
         }
 
         if (user.password.length < 1) {
-            errors.password = "Can't be blank"
+            errors.password = t("errors:blank")
         }
 
         if (user.repeatPassword !== user.password) {
-            errors.repeatPassword = "Passwords do not match"
+            errors.repeatPassword = t("errors:password.compare")
         }
         return errors
     }
@@ -41,13 +44,13 @@ const Login = () => {
                 return (
                     <Form>
                         <div>
-                            <label>Username</label>
+                            <label>{t("username")}</label>
                             <Field name="username"/>
                             <ErrorMessage name='username'/>
                         </div>
                         <br/>
                         <div>
-                            <label>Password</label>
+                            <label>{t("password")}</label>
                             <Field name="password" type="password"/>
                             <ErrorMessage name='password'/>
                             <span> </span>
@@ -55,12 +58,12 @@ const Login = () => {
                         </div>
                         <br/>
                         <div>
-                            <label>Repeat Password</label>
+                            <label>{t("repeat.password")}</label>
                             <Field name="repeatPassword" type="password"/>
                             <ErrorMessage name='repeatPassword'/>
                         </div>
                         <div>
-                            <button type="submit">Submit</button>
+                            <button type="submit">{t("common:submit")}</button>
                         </div>
                     </Form>
                 )

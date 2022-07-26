@@ -4,19 +4,22 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setLikedSongsinReducer, setUserData} from "../Redux/Actions";
 import {saveToLocalStorage} from "../Storage/localStorage";
+import {useTranslation} from "react-i18next";
 const Login = () => {
 
     const navigate = useNavigate()
+
+    const { t } = useTranslation("user")
 
     const validate = (user) => {
         const errors = {}
 
         if (user.username.length < 1) {
-            errors.username = "Can't be blank"
+            errors.username = t("errors:blank")
         }
 
         if (user.password.length < 1) {
-            errors.password = "Can't be blank"
+            errors.password = t("errors:blank")
         }
         return errors
     }
@@ -46,18 +49,18 @@ const Login = () => {
                 return (
                         <Form>
                             <div>
-                                <label>Username</label>
+                                <label>{t("username")}</label>
                                 <Field name="username"/>
                                 <ErrorMessage name='username'/>
                             </div>
                             <br/>
                             <div>
-                                <label>Password</label>
+                                <label>{t("password")}</label>
                                 <Field name="password" type="password"/>
                                 <ErrorMessage name='password'/>
                             </div>
                             <div>
-                                <button type="submit">Submit</button>
+                                <button type="submit">{t("common:submit")}</button>
                             </div>
                         </Form>
                 )

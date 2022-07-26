@@ -1,6 +1,11 @@
 {
   "common": {
-    "language": "EN"
+    "language": "EN",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "submit": "Submit",
+    "or": "OR"
   },
   "songTable": {
     "songName": "Song Name",
@@ -8,5 +13,30 @@
     "author": "Author",
     "playtime": "Playtime",
     "like": "Like"
+  },
+
+  "header": {
+    "homepage": "Homepage",
+    "addSong": "Add Song",
+    "songs": "Songs"
+  },
+
+  "user": {
+    "username": "User Name",
+    "password": "Password",
+    "repeat.password": "Repeat Password"
+  },
+
+  "errors": {
+    "blank": "Can't be blank",
+    "password.compare": "Passwords do not match"
+  },
+
+  "placeholders": {
+    "songName": "Enter song name",
+    "album": "Enter album",
+    "author": "Enter author",
+    "playtime": "Enter playtime"
   }
+
 }

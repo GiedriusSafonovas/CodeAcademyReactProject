@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
-                <Navbar.Brand to="/" as={NavLink}>Homepage</Navbar.Brand>
+                <Navbar.Brand to="/" as={NavLink}>{t("header:homepage")}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll"/>
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -25,8 +25,8 @@ const Header = () => {
                         navbarScroll
                     >
                         {user.roles.includes("ROLE_ADMIN") &&
-                        <Nav.Link to="/addsong" as={NavLink}>Add Song</Nav.Link>}
-                        <Nav.Link to="/songlist" as={NavLink}>Songs</Nav.Link>
+                        <Nav.Link to="/addsong" as={NavLink}>{t("header:addSong")}</Nav.Link>}
+                        <Nav.Link to="/songlist" as={NavLink}>{t("header:songs")}</Nav.Link>
                         <NavDropdown title={t("language")} id="navbarScrollingDropdown" onSelect={(eventKey) => i18n.changeLanguage(eventKey)}>
                             <NavDropdown.Item eventKey="lt">LT</NavDropdown.Item>
                             <NavDropdown.Item eventKey="en">EN</NavDropdown.Item>
@@ -35,11 +35,11 @@ const Header = () => {
                     {
                         !user.username ?
                             <>
-                                <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
-                                <Nav.Link to="/register" as={NavLink}>Register</Nav.Link>
+                                <Nav.Link to="/login" as={NavLink}>{t("login")}</Nav.Link>
+                                <Nav.Link to="/register" as={NavLink}>{t("register")}</Nav.Link>
                             </>
                             :
-                            <Nav.Link onClick={() => logout('user')} href="/">Logout</Nav.Link>
+                            <Nav.Link onClick={() => logout('user')} href="/">{t("logout")}</Nav.Link>
                     }
                 </Navbar.Collapse>
             </Container>

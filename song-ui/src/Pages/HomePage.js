@@ -69,9 +69,9 @@ const HomePage = () => {
                         </Table>
                     </div>
                     : <div>
-                        <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
-                        <span>OR</span>
-                        <Nav.Link to="/register" as={NavLink}>Register</Nav.Link>
+                        <Nav.Link to="/login" as={NavLink}>{t("common:login")}</Nav.Link>
+                        <span>{t("common:or")}</span>
+                        <Nav.Link to="/register" as={NavLink}>{t("common:register")}</Nav.Link>
                     </div>
             }
         </div>

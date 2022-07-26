@@ -1,6 +1,11 @@
 {
   "common": {
-    "language": "LT"
+    "language": "LT",
+    "login": "Prisijungti",
+    "register": "Užsiregistruoti",
+    "logout": "Atsijungti",
+    "submit": "Vykdyti",
+    "or": "ARBA"
 },
 
   "songTable": {
@@ -9,5 +14,29 @@
     "author": "Autorius",
     "playtime": "Trukmė",
     "like": "Patinka"
+  },
+
+  "header": {
+    "homepage": "Pagrindinis",
+    "addSong": "Pridėti dainą",
+    "songs": "Dainos"
+  },
+
+  "user": {
+    "username": "Vardas",
+    "password": "Slaptažodis",
+    "repeat.password": "Pakartokite slaptažodį"
+  },
+
+  "errors": {
+    "blank": "Negali būti tuščias",
+    "password.compare": "Slaptažodžiai nesutampa"
+  },
+
+  "placeholders": {
+    "songName": "Iveskite dainos pavadinimą",
+    "album": "Iveskite albumą",
+    "author": "Iveskite autorių",
+    "playtime": "Iveskite trukmę"
   }
 }
