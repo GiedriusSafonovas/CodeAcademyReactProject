@@ -2,7 +2,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import {getLikedSongs, login} from "../API/apiEndpoints";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {setLikedSongs, setLikedSongsinReducer, setUserData} from "../Redux/Actions";
+import {setLikedSongsinReducer, setUserData} from "../Redux/Actions";
 import {saveToLocalStorage} from "../Storage/localStorage";
 const Login = () => {
 
@@ -29,12 +29,10 @@ const Login = () => {
             password: ''
         }}
                 onSubmit={(user, helper) => {
-                    console.log(user)
                     login({
                         username: user.username,
                         password: user.password
                     }).then((response)=>{
-                        console.log(response)
                         saveToLocalStorage('user', response.data)
                         dispatch(setUserData(response.data))
                         getLikedSongs(response.data.username).then((response) => {

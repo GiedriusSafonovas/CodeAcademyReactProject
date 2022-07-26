@@ -24,7 +24,6 @@ const AddSong = () =>
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log(song)
         createSong(song)
     }
 

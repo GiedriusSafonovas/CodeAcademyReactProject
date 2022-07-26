@@ -18,8 +18,6 @@ const Pages = () => {
 
     useEffect(() => {
 
-            console.log(likedSongsSelector.likedSongs)
-
             if (user.username && likedSongsSelector.likedSongs === null) {
                 getLikedSongs(user.username).then((response) => {
                         dispatch(setLikedSongsinReducer(response.data))

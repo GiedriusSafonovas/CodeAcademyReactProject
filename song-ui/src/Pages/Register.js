@@ -30,12 +30,10 @@ const Login = () => {
             repeatPassword: ''
         }}
                 onSubmit={(user, helper) => {
-                    console.log(user)
                     registerNewUser({
                         userName: user.username,
                         password: user.password,
                     }).then((response)=>{
-                        console.log(response)
                         navigate("/songlist")})
                 }}
                 validate={validate}>

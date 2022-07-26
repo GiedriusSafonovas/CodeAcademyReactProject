@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {Table} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import {unLikeSongapi} from "../API/apiEndpoints";

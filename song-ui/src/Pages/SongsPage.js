@@ -1,10 +1,10 @@
 import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {getSongs, deleteSong, getLikedSongs, likeSongapi, unLikeSongapi} from "../API/apiEndpoints";
+import {getSongs, deleteSong, likeSongapi, unLikeSongapi} from "../API/apiEndpoints";
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {likeSong, setLikedSongsinReducer, unLikeSong, updateSong} from "../Redux/Actions";
+import {likeSong, unLikeSong, updateSong} from "../Redux/Actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {regular, solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {useTranslation} from "react-i18next";
@@ -27,18 +27,14 @@ const SongsPage = () => {
 
 
         getSongs().then((response) => {
-            console.log('response', response)
             setSongs(response.data)
 
         })
             .catch((error) => console.log('error', error))
-        console.log('selector ', likedSongsSelector.likedSongs)
     }, [])
 
 
     const deleteSongById = (id) => {
-        console.log(id)
-
         deleteSong(id).then(() => {
             const newSongList = songs.filter(song => song.id !== id)
             setSongs(newSongList)
@@ -46,7 +42,6 @@ const SongsPage = () => {
     }
 
     const editSong = (song) => {
-        console.log('hello ', song)
         dispatch(updateSong(song))
         navigate("/updatesong")
     }

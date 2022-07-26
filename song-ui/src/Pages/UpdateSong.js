@@ -29,7 +29,6 @@ const AddSong = () =>
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log(song)
         updateSong(song).finally(() => navigate("/songlist"))
     }
 

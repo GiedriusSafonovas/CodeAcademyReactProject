@@ -10,7 +10,6 @@ const songReducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'update':{
             const songEdit = action.song
-            console.log('In redux: ',songEdit)
             return {
                 id: songEdit.id,
                 songName: songEdit.songName,
